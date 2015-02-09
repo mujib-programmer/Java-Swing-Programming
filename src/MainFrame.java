@@ -10,6 +10,7 @@ import javax.swing.JTextArea;
 public class MainFrame extends JFrame {
 	
 	// deklarasi komponen-komponen yang akan ditampilkan
+	private Toolbar toolbar;
 	private TextPanel textPanel;
 	private JButton btn;
 
@@ -20,8 +21,10 @@ public class MainFrame extends JFrame {
 		setLayout(new BorderLayout());
 		
 		// inisiasi komponen
+		toolbar = new Toolbar();
 		textPanel = new TextPanel();
 		btn = new JButton("Click Me!");
+		
 		
 		// tambahkan event pada tombol Click Me!
 		btn.addActionListener(new ActionListener() {
@@ -36,6 +39,7 @@ public class MainFrame extends JFrame {
 		// tambahkan komponen ke MainFrame
 		// secara default JFame sudah memiliki ContentPane sendiri
 		// jadi bisa langsung ditambahkan
+		add(toolbar, BorderLayout.NORTH);
 		add(textPanel, BorderLayout.CENTER);
 		add(btn, BorderLayout.SOUTH);
 		
