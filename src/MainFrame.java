@@ -12,6 +12,7 @@ public class MainFrame extends JFrame {
 	// deklarasi komponen-komponen yang akan ditampilkan
 	private Toolbar toolbar;
 	private TextPanel textPanel;
+	private FormPanel formPanel;
 
 	public MainFrame() {
 		super("Hello World");
@@ -21,7 +22,8 @@ public class MainFrame extends JFrame {
 		
 		// inisiasi komponen
 		toolbar = new Toolbar();
-		textPanel = new TextPanel();		
+		textPanel = new TextPanel();
+		formPanel = new FormPanel();
 		
 		// aktifkan event pada toolbar agar bisa bekerja dengan objek textPanel
 		toolbar.setStringListener(new StringListener() {
@@ -37,6 +39,7 @@ public class MainFrame extends JFrame {
 		// tambahkan komponen ke MainFrame
 		// secara default JFame sudah memiliki ContentPane sendiri
 		// jadi bisa langsung ditambahkan
+		add(formPanel, BorderLayout.WEST);
 		add(toolbar, BorderLayout.NORTH);
 		add(textPanel, BorderLayout.CENTER);		
 		
