@@ -1,3 +1,5 @@
+import javax.swing.SwingUtilities;
+
 
 public class App {
 
@@ -5,7 +7,13 @@ public class App {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		MainFrame mainFrame = new MainFrame();
+		
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				new MainFrame();
+			}			
+		});
+		
 
 	}
 

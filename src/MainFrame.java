@@ -25,6 +25,8 @@ public class MainFrame extends JFrame {
 		textPanel = new TextPanel();
 		btn = new JButton("Click Me!");
 		
+		// aktifkan event pada toolbar agar bisa bekerja dengan objek textPanel
+		toolbar.setTextPanel(textPanel);
 		
 		// tambahkan event pada tombol Click Me!
 		btn.addActionListener(new ActionListener() {
@@ -51,7 +53,6 @@ public class MainFrame extends JFrame {
 		
 		// tampilkan MainFrame
 		setVisible(true);
-		
 		
 	}
 }
