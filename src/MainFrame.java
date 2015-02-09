@@ -10,7 +10,7 @@ import javax.swing.JTextArea;
 public class MainFrame extends JFrame {
 	
 	// deklarasi komponen-komponen yang akan ditampilkan
-	private JTextArea textArea;
+	private TextPanel textPanel;
 	private JButton btn;
 
 	public MainFrame() {
@@ -20,7 +20,7 @@ public class MainFrame extends JFrame {
 		setLayout(new BorderLayout());
 		
 		// inisiasi komponen
-		textArea = new JTextArea();
+		textPanel = new TextPanel();
 		btn = new JButton("Click Me!");
 		
 		// tambahkan event pada tombol Click Me!
@@ -28,17 +28,15 @@ public class MainFrame extends JFrame {
 			
 			// tambahkan kata hello di text area ketika tombol di klik
 			public void actionPerformed(ActionEvent e) {
-				textArea.append("Hello \n");
-				
-			}
-			
+				textPanel.appendText("Hello \n");				
+			}		
 			
 		});
 		
 		// tambahkan komponen ke MainFrame
 		// secara default JFame sudah memiliki ContentPane sendiri
 		// jadi bisa langsung ditambahkan
-		add(textArea, BorderLayout.CENTER);
+		add(textPanel, BorderLayout.CENTER);
 		add(btn, BorderLayout.SOUTH);
 		
 		// atur ukuran frame
