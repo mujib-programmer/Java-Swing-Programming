@@ -1,4 +1,6 @@
 import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -21,6 +23,18 @@ public class MainFrame extends JFrame {
 		textArea = new JTextArea();
 		btn = new JButton("Click Me!");
 		
+		// tambahkan event pada tombol Click Me!
+		btn.addActionListener(new ActionListener() {
+			
+			// tambahkan kata hello di text area ketika tombol di klik
+			public void actionPerformed(ActionEvent e) {
+				textArea.append("Hello \n");
+				
+			}
+			
+			
+		});
+		
 		// tambahkan komponen ke MainFrame
 		// secara default JFame sudah memiliki ContentPane sendiri
 		// jadi bisa langsung ditambahkan
@@ -35,5 +49,7 @@ public class MainFrame extends JFrame {
 		
 		// tampilkan MainFrame
 		setVisible(true);
+		
+		
 	}
 }
