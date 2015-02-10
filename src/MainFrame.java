@@ -9,6 +9,9 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JTextArea;
+import javax.swing.KeyStroke;
+
+import com.sun.glass.events.KeyEvent;
 
 
 public class MainFrame extends JFrame {
@@ -105,6 +108,18 @@ public class MainFrame extends JFrame {
 				JCheckBoxMenuItem menuItem = (JCheckBoxMenuItem) ev.getSource();
 				
 				formPanel.setVisible(menuItem.isSelected());
+			}
+			
+		});
+		
+		fileMenu.setMnemonic(KeyEvent.VK_F);
+		exitItem.setMnemonic(KeyEvent.VK_X);
+		
+		exitItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, ActionEvent.CTRL_MASK));
+		
+		exitItem.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);				
 			}
 			
 		});
