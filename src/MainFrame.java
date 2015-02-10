@@ -3,6 +3,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -89,12 +90,24 @@ public class MainFrame extends JFrame {
 		
 		JMenu windowMenu =  new JMenu("Window");
 		JMenu showMenu = new JMenu("Show");
-		JMenuItem showFormItem = new JMenuItem("Person Form");
+		
+		JCheckBoxMenuItem showFormItem = new JCheckBoxMenuItem("Person Form");
+		showFormItem.setSelected(true);
+		
 		showMenu.add(showFormItem);
 		windowMenu.add(showMenu);
 		
 		menuBar.add(fileMenu);
 		menuBar.add(windowMenu);
+		
+		showFormItem.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent ev) {
+				JCheckBoxMenuItem menuItem = (JCheckBoxMenuItem) ev.getSource();
+				
+				formPanel.setVisible(menuItem.isSelected());
+			}
+			
+		});
 		
 		return menuBar;
 	}
