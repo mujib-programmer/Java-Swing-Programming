@@ -1,4 +1,5 @@
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -8,6 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import javax.swing.KeyStroke;
 
@@ -67,6 +69,7 @@ public class MainFrame extends JFrame {
 		add(textPanel, BorderLayout.CENTER);		
 		
 		// atur ukuran frame
+		setMinimumSize(new Dimension(500, 400));
 		setSize(600, 500);
 		
 		// tutup frame ketika ikon x diklik
@@ -119,7 +122,13 @@ public class MainFrame extends JFrame {
 		
 		exitItem.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
-				System.exit(0);				
+				int action = JOptionPane.showConfirmDialog(MainFrame.this
+						, "Do you really want to exit the application?"
+						, "Confirm Exit", JOptionPane.OK_CANCEL_OPTION);
+				
+				if (action == JOptionPane.OK_OPTION) {
+					System.exit(0);				
+				}
 			}
 			
 		});
