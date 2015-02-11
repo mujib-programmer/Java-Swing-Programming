@@ -20,8 +20,15 @@ public class Person {
 		this.occupation = occupation;
 		this.ageCategory = ageCategory;
 		this.empCategory =  empCategory;
-		this.taxId = taxId;
+		
 		this.usCitizen = usCitizen;
+		
+		if (this.usCitizen) {
+			this.taxId = taxtId;
+		} else {
+			this.taxId = "";
+		}
+		
 		this.gender = gender;
 		
 		this.id = count;

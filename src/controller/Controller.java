@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.List;
+
 import model.Database;
 import model.EmploymentCategory;
 import model.AgeCategory;
@@ -10,6 +12,10 @@ import gui.FormEvent;
 public class Controller {
 	
 	Database db = new Database();
+	
+	public List<Person> getPeople() {
+		return db.getPeople();
+	}
 	
 	public void addPerson(FormEvent ev) {
 		String name = ev.getName();
@@ -31,7 +37,7 @@ public class Controller {
 			ageCategory = AgeCategory.adult;
 			break;
 			
-		case 3 :
+		case 2 :
 			ageCategory = AgeCategory.senior;
 			break;
 			

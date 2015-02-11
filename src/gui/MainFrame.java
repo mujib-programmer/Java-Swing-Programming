@@ -28,6 +28,7 @@ public class MainFrame extends JFrame {
 	private FormPanel formPanel;
 	private JFileChooser fileChooser;
 	private Controller controller;
+	private TablePanel tablePanel;
 
 	public MainFrame() {
 		super("Hello World");
@@ -39,8 +40,11 @@ public class MainFrame extends JFrame {
 		toolbar = new Toolbar();
 		textPanel = new TextPanel();
 		formPanel = new FormPanel();
+		tablePanel = new TablePanel();
 		
 		controller = new Controller();
+		
+		tablePanel.setData(controller.getPeople());
 		
 		fileChooser =  new JFileChooser();
 		fileChooser.addChoosableFileFilter(new PersonFileFilter());
@@ -60,8 +64,9 @@ public class MainFrame extends JFrame {
 		
 		formPanel.setFormListener(new FormListener(){
 			public void formEventOccurred(FormEvent e) {		
-				
 				controller.addPerson(e);
+				tablePanel.refresh();
+				
 			}
 		});
 		
@@ -70,7 +75,7 @@ public class MainFrame extends JFrame {
 		// jadi bisa langsung ditambahkan
 		add(formPanel, BorderLayout.WEST);
 		add(toolbar, BorderLayout.NORTH);
-		add(textPanel, BorderLayout.CENTER);		
+		add(tablePanel, BorderLayout.CENTER);		
 		
 		// atur ukuran frame
 		setMinimumSize(new Dimension(500, 400));

@@ -12,9 +12,6 @@ public class FormEvent extends EventObject {
 	private boolean usCitizen;
 	private String gender;
 	
-	public String getEmpCategory() {
-		return empCategory;
-	}
 
 	public FormEvent(Object source) {
 		super(source);
@@ -48,21 +45,25 @@ public class FormEvent extends EventObject {
 	public void setOccupation(String occupation) {
 		this.occupation = occupation;
 	}
+	
+	public String getEmpCategory() {
+		return this.empCategory;
+	}
 
 	public int getAgeCategory() {
-		return ageCategory;
+		return this.ageCategory;
 	}
 
 	public String getTaxId() {
-		return taxId;
+		return this.taxId;
 	}
 
 	public boolean isUsCitizen() {
-		return usCitizen;
+		return this.usCitizen;
 	}
 
 	public String getGender() {
-		return gender;
+		return this.gender;
 	}
 	
 	
