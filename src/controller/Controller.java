@@ -19,6 +19,10 @@ public class Controller {
 		return db.getPeople();
 	}
 	
+	public void removePerson(int index) {
+		db.removePerson(index);
+	}
+	
 	public void addPerson(FormEvent ev) {
 		String name = ev.getName();
 		String occupation = ev.getOccupation();
@@ -81,7 +85,7 @@ public class Controller {
 		
 		db.add(person);
 
-	}
+	}	
 	
 	public void saveToFile(File file) throws IOException {
 		db.saveToFile(file);

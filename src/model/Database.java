@@ -8,19 +8,24 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 public class Database {
 
-	private ArrayList<Person> people;
+	private List<Person> people;
 	
 	public Database() {
-		people = new ArrayList<Person>();
+		people = new LinkedList<Person>();
 	}
 	
 	public void add(Person person) {
 		people.add(person);
 		
+	}
+	
+	public void removePerson(int index) {
+		people.remove(index);
 	}
 	
 	public List<Person> getPeople() {
