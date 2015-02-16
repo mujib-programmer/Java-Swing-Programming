@@ -6,6 +6,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -14,6 +17,7 @@ import java.util.List;
 public class Database {
 
 	private List<Person> people;
+	private Connection con;
 	
 	public Database() {
 		people = new LinkedList<Person>();
@@ -61,6 +65,36 @@ public class Database {
 		
 		ois.close();
 		
+	}
+
+	public void connect() throws Exception {
+		// TODO Auto-generated method stub
+		if (con != null) {
+			return;
+		}
+		
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			throw new Exception("Driver not found");
+		}
+		
+		String url = "jdbc:mysql://localhost:3306/swingtest";
+		
+		con = DriverManager.getConnection(url, "swingtest", "swingtestpassword");
+		
+	}
+
+	public void disconnect() {
+		// TODO Auto-generated method stub
+		if (con != null) {
+			try {
+				con.close();
+			} catch (SQLException e) {
+				System.out.println("Cannot close connection");
+			}
+		}
 	}
 	
 }
