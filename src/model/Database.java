@@ -8,6 +8,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -95,6 +97,27 @@ public class Database {
 				System.out.println("Cannot close connection");
 			}
 		}
+	}
+	
+	public void save() throws SQLException {
+		String checkSql =  "select count(*) as count from people where id=?";
+		
+		PreparedStatement checkStmt =  con.prepareStatement( checkSql );
+		
+		for (Person person: people) {
+			int id = person.getId();
+			
+			checkStmt.setInt(1, id); 
+			
+			ResultSet checkResult = checkStmt.executeQuery();
+			checkResult.next();
+			
+			int count = checkResult.getInt(1);
+			
+			System.out.println("Count for person with ID " + id + " is " + count);
+		}
+		
+		checkStmt.close();
 	}
 	
 }
