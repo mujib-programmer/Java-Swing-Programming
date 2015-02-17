@@ -18,7 +18,7 @@ public class Person implements Serializable {
 	private Gender gender;
 	
 	public Person(String name, String occupation, AgeCategory ageCategory,
-			EmploymentCategory empCategory, String taxtId, boolean usCitizen, 
+			EmploymentCategory empCategory, String taxId, boolean usCitizen, 
 			Gender gender) {
 		
 		this.name =  name;
@@ -29,7 +29,7 @@ public class Person implements Serializable {
 		this.usCitizen = usCitizen;
 		
 		if (this.usCitizen) {
-			this.taxId = taxtId;
+			this.taxId = taxId;
 		} else {
 			this.taxId = "";
 		}
@@ -37,6 +37,15 @@ public class Person implements Serializable {
 		this.gender = gender;
 		
 		this.id = count;
+		this.count++;
+	}
+	
+	public Person(int id, String name, String occupation, AgeCategory ageCategory,
+			EmploymentCategory empCategory, String taxId, boolean usCitizen, 
+			Gender gender) {
+		this(name, occupation, ageCategory, empCategory, taxId, usCitizen, gender);
+		
+		this.id = id;		
 		this.count++;
 	}
 	
@@ -89,5 +98,7 @@ public class Person implements Serializable {
 		this.gender = gender;
 	}
 	
-	
+	public String toString() {
+		return id + ": " + name;
+	}
 }

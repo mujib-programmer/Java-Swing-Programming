@@ -23,6 +23,8 @@ public class TestDatabase {
 		
 		db.save();
 		
+		db.loadDatabase();
+		
 		db.disconnect();
 
 	}
