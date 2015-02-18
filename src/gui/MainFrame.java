@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.prefs.Preferences;
 
 import javax.swing.JButton;
@@ -24,6 +25,7 @@ import controller.Controller;
 
 public class MainFrame extends JFrame {
 
+	private static final long serialVersionUID = 6575152134750353583L;
 	// deklarasi komponen-komponen yang akan ditampilkan
 	private Toolbar toolbar;
 	private TextPanel textPanel;
@@ -82,12 +84,32 @@ public class MainFrame extends JFrame {
 		setJMenuBar(createMenuBar());
 
 		// aktifkan event pada toolbar agar bisa bekerja dengan objek textPanel
-		toolbar.setStringListener(new StringListener() {
+		toolbar.setToolbarListener(new ToolbarListener() {
+			@Override
+			public void saveEventOccured() {
+				
+				connect();
+				
+				try {
+					controller.save();
+				} catch (SQLException e) {
+					JOptionPane.showMessageDialog(MainFrame.this, "Unable to save to database.", "Database Connection Problem", JOptionPane.ERROR_MESSAGE); 	
+				}
+				
+			}
 
-			public void textEmitted(String text) {
-				// TODO Auto-generated method stub
-				textPanel.appendText(text);
-
+			@Override
+			public void refreshEventOccured() {
+				
+				connect();
+				
+				try {
+					controller.load();
+				} catch (SQLException e) {
+					JOptionPane.showMessageDialog(MainFrame.this, "Unable to load from database.", "Database Connection Problem", JOptionPane.ERROR_MESSAGE);
+				}
+				
+				tablePanel.refresh();
 			}
 
 		});
@@ -117,6 +139,15 @@ public class MainFrame extends JFrame {
 		// tampilkan MainFrame
 		setVisible(true);
 
+	}
+	
+	private void connect() {
+		try {
+			controller.connect();
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(MainFrame.this, "Cannot connect to database.", "Database Connection Problem", JOptionPane.ERROR_MESSAGE);
+		}
+		
 	}
 
 	private JMenuBar createMenuBar() {
