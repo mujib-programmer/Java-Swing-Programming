@@ -2,8 +2,10 @@ package gui;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.URL;
 
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
@@ -18,7 +20,10 @@ public class Toolbar extends JPanel implements ActionListener {
 		setBorder(BorderFactory.createEtchedBorder());
 		
 		saveButton = new JButton("Save");
+		saveButton.setIcon(createIcon("/images/Save16.gif"));
+		
 		refreshButton = new JButton("Refresh");	
+		refreshButton.setIcon(createIcon("/images/Refresh16.gif"));
 		
 		saveButton.addActionListener(this);
 		refreshButton.addActionListener(this);
@@ -30,6 +35,16 @@ public class Toolbar extends JPanel implements ActionListener {
 		
 	}
 	
+	private ImageIcon createIcon(String path) {
+		URL url = getClass().getResource(path);
+		
+		if (url == null) {
+			System.err.println("Unable to load image: " + path);
+		}
+		
+		ImageIcon icon = new ImageIcon(url);
+		return icon;
+	}
 	
 	public void setToolbarListener(ToolbarListener listener) {
 		this.toolbarListener = listener;		
