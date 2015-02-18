@@ -140,7 +140,7 @@ public class MainFrame extends JFrame {
 		// secara default JFame sudah memiliki ContentPane sendiri
 		// jadi bisa langsung ditambahkan
 		add(formPanel, BorderLayout.WEST);
-		add(toolbar, BorderLayout.NORTH);
+		add(toolbar, BorderLayout.PAGE_START);
 		add(tablePanel, BorderLayout.CENTER);
 
 		// atur ukuran frame
