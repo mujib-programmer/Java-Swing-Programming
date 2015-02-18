@@ -19,6 +19,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.JSplitPane;
 import javax.swing.JTextArea;
 import javax.swing.KeyStroke;
 
@@ -38,6 +39,7 @@ public class MainFrame extends JFrame {
 	private TablePanel tablePanel;
 	private PrefsDialog prefsDialog;
 	private Preferences prefs;
+	private JSplitPane splitPane;
 
 	public MainFrame() {
 		super("Hello World");
@@ -51,6 +53,9 @@ public class MainFrame extends JFrame {
 		formPanel = new FormPanel();
 		tablePanel = new TablePanel();
 		prefsDialog = new PrefsDialog(this); 
+		splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, formPanel, tablePanel);
+		
+		splitPane.setOneTouchExpandable(true); 
 		
 		prefs = Preferences.userRoot().node("db");
 
@@ -139,9 +144,8 @@ public class MainFrame extends JFrame {
 		// tambahkan komponen ke MainFrame
 		// secara default JFame sudah memiliki ContentPane sendiri
 		// jadi bisa langsung ditambahkan
-		add(formPanel, BorderLayout.WEST);
 		add(toolbar, BorderLayout.PAGE_START);
-		add(tablePanel, BorderLayout.CENTER);
+		add(splitPane, BorderLayout.CENTER);
 
 		// atur ukuran frame
 		setMinimumSize(new Dimension(500, 400));
@@ -205,6 +209,10 @@ public class MainFrame extends JFrame {
 			public void actionPerformed(ActionEvent ev) {
 				JCheckBoxMenuItem menuItem = (JCheckBoxMenuItem) ev.getSource();
 
+				if (menuItem.isSelected()) {
+					splitPane.setDividerLocation((int) formPanel.getMinimumSize().getWidth());
+				}
+				
 				formPanel.setVisible(menuItem.isSelected());
 			}
 
