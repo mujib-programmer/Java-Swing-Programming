@@ -44,13 +44,17 @@ public class MessagePanel extends JPanel {
 
 	private JTree serverTree;
 	private ServerTreeCellRenderer treeCellRenderer;
+	private ServerTreeCellEditor treeCellEditor;
 	
 	public MessagePanel() {
 		
 		treeCellRenderer = new ServerTreeCellRenderer();
+		treeCellEditor = new ServerTreeCellEditor();
 				
 		serverTree = new JTree(createTree());
 		serverTree.setCellRenderer(treeCellRenderer);
+		serverTree.setCellEditor(treeCellEditor);
+		serverTree.setEditable(true);
 		
 		serverTree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
 		
