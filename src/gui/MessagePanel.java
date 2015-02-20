@@ -8,6 +8,7 @@ import javax.swing.JTree;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.TreeSelectionModel;
 
 class ServerInfo {
@@ -32,9 +33,18 @@ class ServerInfo {
 public class MessagePanel extends JPanel {
 
 	private JTree serverTree;
+	private DefaultTreeCellRenderer treeCellRenderer;
 	
 	public MessagePanel() {
+		
+		treeCellRenderer = new DefaultTreeCellRenderer();
+		
+		treeCellRenderer.setLeafIcon(Utils.createIcon("/images/Server16.gif"));
+		treeCellRenderer.setOpenIcon(Utils.createIcon("/images/WebComponent16.gif"));
+		treeCellRenderer.setClosedIcon(Utils.createIcon("/images/WebComponentAdd16.gif"));
+		
 		serverTree = new JTree(createTree());
+		serverTree.setCellRenderer(treeCellRenderer);
 		
 		serverTree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
 		
